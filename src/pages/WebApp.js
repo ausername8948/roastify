@@ -7,10 +7,10 @@ const CLIENT_ID = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
 const SPOTIFY_AUTHORIZE_ENDPOINT = "https://accounts.spotify.com/authorize"
 const REDIRECT_URI = process.env.REACT_APP_SPOTIFY_REDIRECT_URI;
 
-console.log(REDIRECT_URI);
-console.log(CLIENT_ID);
+//console.log(REDIRECT_URI);
+//console.log(CLIENT_ID);
 
-const SCOPES = ["user-top-read"];
+const SCOPES = ["user-top-read", "user-read-private", "user-read-email"];
 const getReturnedParamsFromSpotifyAuth = (hash) => {
     const stringAfterHashtag = hash.substring(1);
     const paramsInUrl = stringAfterHashtag.split("&");

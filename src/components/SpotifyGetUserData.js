@@ -32,7 +32,7 @@ const SpotifyGetUserData = () => {
         })
             .then((response) => {
                 setData(response.data);
-                console.log(response.data);
+                //console.log(response.data);
 
                 const artistNames = response.data.items.slice(0, 5).map(item => item.name);
                 const artistImages = response.data.items.slice(0, 5).map(item => item.images[0].url);
