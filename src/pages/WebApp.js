@@ -5,7 +5,7 @@ import { useEffect } from "react";
 
 const CLIENT_ID = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
 const SPOTIFY_AUTHORIZE_ENDPOINT = "https://accounts.spotify.com/authorize"
-const REDIRECT_URI = "roastify.vercel.app/webapp";
+const REDIRECT_URI = process.env.REACT_APP_SPOTIFY_REDIRECT_URI;
 
 console.log(REDIRECT_URI);
 console.log(CLIENT_ID);
@@ -46,7 +46,7 @@ function WebApp() {
         }
     }, [])
     const handleLogin = () => {
-        window.location = `${SPOTIFY_AUTHORIZE_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&scope=${SCOPES.join("%20")}&response_type=token&show_dialog=true`;
+        window.location = `${SPOTIFY_AUTHORIZE_ENDPOINT}?client_id=https://${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&scope=${SCOPES.join("%20")}&response_type=token&show_dialog=true`;
         
     }
     return (
