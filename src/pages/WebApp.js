@@ -5,7 +5,10 @@ import { useEffect } from "react";
 
 const CLIENT_ID = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
 const SPOTIFY_AUTHORIZE_ENDPOINT = "https://accounts.spotify.com/authorize"
-const REDIRECT_URI = process.env.SPOTIFY_REDIRECT_URI;
+const REDIRECT_URI = process.env.REACT_APP_SPOTIFY_REDIRECT_URI;
+
+console.log(REDIRECT_URI);
+console.log(CLIENT_ID);
 
 const SCOPES = ["user-top-read"];
 const getReturnedParamsFromSpotifyAuth = (hash) => {
