@@ -6,6 +6,7 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 import { HarmBlockThreshold, HarmCategory } from "@google/generative-ai";
 
 
+
 const DisplayArtists = () => {
   const location = useLocation();
   const { artists = [], artistImages = [], genres = [], userProfile = {} } = location.state || {};
@@ -31,7 +32,7 @@ const DisplayArtists = () => {
   ]
   const handleRoastMe = async (mode = 'default') => {
     try {
-      const genAI = new GoogleGenerativeAI("AIzaSyAxoXiC-DpB9_n6kyLshUiPBM9TWRoLJW8");
+      const genAI = new GoogleGenerativeAI(process.env.REACT_APP_GOOGLE_API_KEY);
       const model = genAI.getGenerativeModel({
         model: "gemini-1.5-flash",
         safetySettings: safetySettings,

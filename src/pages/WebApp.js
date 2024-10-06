@@ -3,13 +3,11 @@ import "./WebApp.css";
 import SpotifyGetUserData from "../components/SpotifyGetUserData";
 import { useEffect } from "react";
 
-const CLIENT_ID = "e6963b533e3146e999e4aa5f2e5e96b5"
+const CLIENT_ID = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
 const SPOTIFY_AUTHORIZE_ENDPOINT = "https://accounts.spotify.com/authorize"
-//const CLIENT_SECRET = "582143334cfb4c10809c1f9db38915cf"
 const REDIRECT_URI = "http://localhost:3000/webapp"
 
 const SCOPES = ["user-top-read"];
-
 const getReturnedParamsFromSpotifyAuth = (hash) => {
     const stringAfterHashtag = hash.substring(1);
     const paramsInUrl = stringAfterHashtag.split("&");
@@ -24,6 +22,7 @@ const getReturnedParamsFromSpotifyAuth = (hash) => {
 };
 
 function WebApp() {
+    const [isLoggedIn, setIsLoggedIn] = React.useState(false);
 
     useEffect(() => {
         if(window.location.hash) {
@@ -39,17 +38,22 @@ function WebApp() {
             localStorage.setItem("tokenType", token_type);
             localStorage.setItem("expiresIn", expires_in);
 
+            setIsLoggedIn(true);
+
         }
     }, [])
     const handleLogin = () => {
         window.location = `${SPOTIFY_AUTHORIZE_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&scope=${SCOPES.join("%20")}&response_type=token&show_dialog=true`;
+        
     }
     return (
         <div className="container">
             <div className="logo">
                 <h1 className="fade-in">Welcome to Roastify</h1>
             </div>
-            <button className="login-button fade-in" onClick={handleLogin}>Login To Spotify</button>
+            <button className="login-button fade-in" onClick={handleLogin} disabled={isLoggedIn}>
+                {isLoggedIn ? "You've Logged In" : "Login To Spotify"}
+            </button>
             <br/>
             <SpotifyGetUserData />
         </div>
