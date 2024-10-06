@@ -37,9 +37,9 @@ const DisplayArtists = () => {
         model: "gemini-1.5-flash",
         safetySettings: safetySettings,
       });
-      let prompt = `Roast me based on my music taste. BE EXTREMELY MEAN. Artists: ${artists.join(', ')}. Genres: ${genres.join(', ')}`;
+      let prompt = `Roast me based on my music taste. BE EXTREMELY MEAN. Artists: ${artists.join(', ')}. Genres: ${genres.join(', ')}. Limit the response to 150 words.`;
       if (mode === 'genz') {
-        prompt = `Using Gen-Z slang, and "brainrot language" commonly used on social media, roast based on my music taste. Artists: ${artists.join(', ')}. Genres: ${genres.join(', ')}`;
+        prompt = `Using Gen-Z slang, and "brainrot language" commonly used on social media, roast based on my music taste. Artists: ${artists.join(', ')}. Genres: ${genres.join(', ')}. Limit the response to 150 words.` ;
       }
       ;
       const result = await model.generateContentStream(prompt);

@@ -49,13 +49,14 @@ function WebApp() {
     return (
         <div className="container">
             <div className="logo">
+                <img src="/logo.png" alt="Roastify Logo" />
                 <h1 className="fade-in">Welcome to Roastify</h1>
             </div>
             <button className="login-button fade-in" onClick={handleLogin} disabled={isLoggedIn}>
                 {isLoggedIn ? "You've Logged In" : "Login To Spotify"}
             </button>
             <br/>
-            <SpotifyGetUserData />
+            {isLoggedIn && <SpotifyGetUserData />}
         </div>
     );
 };

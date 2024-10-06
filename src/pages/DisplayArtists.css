@@ -24,6 +24,7 @@ body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
+    overflow-x: hidden;
 }
 
 .container {
@@ -58,8 +59,10 @@ body {
     justify-content: flex-start;
     width: 35%; /* Adjusted width to fit within the container */
     padding: 20px;
-    padding-right: 5vw;
     border-radius: 10px;
+    position: absolute;
+    top: 20px;
+    right: 10.5vw;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -67,7 +70,7 @@ body {
     display: flex;
     align-items: center; /* Align items vertically centered */
     justify-content: space-between;
-    width: 100%;
+    width: 90%;
     margin-top: auto;
 }
 
@@ -75,8 +78,8 @@ body {
     display: flex;
     align-items: center;
     flex-direction: column;
-    padding-left: 10vw;
-    padding-top: 3vh;
+    padding-left: 3vw;
+    padding-top: 3vh;   
 }
 
 .profile-picture {
@@ -128,14 +131,13 @@ body {
     display: flex;
     flex-direction: row;
     list-style-type: none;
-    padding: 0;
     font-size: 1.5em;
     text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #00ffff;
 }
 
 .bullet-points li {
     margin: 0 10px; /* Adjust margin to space out the items horizontally */
-    padding-left: 5vw;
+    padding-right: 3vw;
 }
 
 .bottom-row {
@@ -194,9 +196,9 @@ body {
     border: 1px solid #444;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    text-align: center;
+    text-align: caenter;
     color: #e0e0e0;
     font-size: 1.2em;
-    max-height: 250px; /* Set a fixed height for the box */
+    max-height: 300px; /* Set a fixed height for the box */
     overflow-y: auto; /* Enable vertical scrolling */
 }
