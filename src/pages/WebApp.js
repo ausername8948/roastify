@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 import "./WebApp.css";
 import SpotifyGetUserData from "../components/SpotifyGetUserData";
 import { useEffect } from "react";
@@ -10,7 +11,13 @@ const REDIRECT_URI = process.env.REACT_APP_SPOTIFY_REDIRECT_URI;
 //console.log(REDIRECT_URI);
 //console.log(CLIENT_ID);
 
-const SCOPES = ["user-top-read", "user-read-private", "user-read-email"];
+const SCOPES = [
+    "user-read-private",
+    "user-read-email",
+    "user-top-read",
+    "playlist-read-private",
+    "playlist-read-collaborative"
+];
 const getReturnedParamsFromSpotifyAuth = (hash) => {
     const stringAfterHashtag = hash.substring(1);
     const paramsInUrl = stringAfterHashtag.split("&");
@@ -34,7 +41,7 @@ function WebApp() {
                 expires_in, 
                 token_type, 
             } = getReturnedParamsFromSpotifyAuth(window.location.hash);
-            //console.log({access_token});
+            console.log({access_token});
 
             localStorage.clear();
             localStorage.setItem("accessToken", access_token);
@@ -42,6 +49,17 @@ function WebApp() {
             localStorage.setItem("expiresIn", expires_in);
 
             setIsLoggedIn(true);
+
+            axios.get("https://api.spotify.com/v1/me", {
+                headers: {
+                    Authorization: `${token_type} ${access_token}`,
+                }
+            }).then(response => {
+                console.log("Spotify user data:", response.data);
+            }).catch(error => {
+                console.error("Error fetching Spotify user data:", error);
+                setIsLoggedIn(false); // Reset login state if token verification fails
+            });
 
         }
     }, [])
