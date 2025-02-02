@@ -27,7 +27,7 @@ const SpotifyGetUserData = () => {
 
     const handleGetUserData = () => {
         setLoading(true);
-        axios.get("https://api.spotify.com/v1/me/top/artists?time_range=short_term&limit=50&offset=0", {
+        axios.get("https://api.spotify.com/v1/me/top/artists?time_range=medium_term&limit=50&offset=0", {
             headers: {
                 Authorization: "Bearer " + token,
             },
